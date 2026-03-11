@@ -1,0 +1,87 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n_app
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      # Aqui está o link gerado pelo Cloudflare (com a barra / no final)
+      - WEBHOOK_URL=https://possible-klein-sys-diego.trycloudflare.com/
+      - GENERIC_TIMEZONE=America/Sao_Paulo
+    volumes:
+      - n8n_data:/home/node/.n8n
+    networks:
+      - rede_automacao
+
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      - POSTGRES_USER=evolution
+      - POSTGRES_PASSWORD=evolution_senha
+      - POSTGRES_DB=evolution
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rede_automacao
+
+  redis_cache:
+    image: redis:latest
+    platform: linux/amd64
+    container_name: redis_cache
+    restart: always
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    networks:
+      - rede_automacao
+
+  evolution_api:
+    image: atendai/evolution-api:v2.1.1
+    container_name: evolution_api
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SERVER_URL=http://localhost:8080
+      - AUTHENTICATION_TYPE=apikey
+      - AUTHENTICATION_API_KEY=123 
+      # Cache
+      - CACHE_REDIS_ENABLED=true
+      - CACHE_REDIS_URI=redis://redis_cache:6379/1
+      # Banco de Dados
+      - DATABASE_PROVIDER=postgresql
+      - DATABASE_CONNECTION_URI=postgresql://evolution:evolution_senha@postgres_db:5432/evolution?schema=public
+    volumes:
+      - evolution_instances:/evolution/instances
+    depends_on:
+      - redis_cache
+      - postgres_db
+    networks:
+      - rede_automacao
+
+  minha_api:
+    image: nginx:latest
+    container_name: minha_api
+    restart: always
+    ports:
+      - "3000:80"
+    networks:
+      - rede_automacao
+
+networks:
+  rede_automacao:
+    driver: bridge
+
+volumes:
+  n8n_data:
+  redis_data:
+  postgres_data:
+  evolution_instances:
