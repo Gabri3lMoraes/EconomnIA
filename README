@@ -1,0 +1,47 @@
+🤖 Assistente de Finanças Pessoais com IA & n8n
+Este projeto é um agente inteligente de finanças que automatiza o registro de gastos a partir de mensagens de texto ou áudio via WhatsApp/Telegram. Utilizando o n8n como orquestrador, a IA (Gemini/Groq) extrai os dados e os organiza automaticamente em uma planilha do Google Sheets.
+
+🚀 Funcionalidades
+Transcrição de Áudio: Converte áudios do Telegram/WhatsApp em texto para processamento.
+
+Processamento de Linguagem Natural (LLM): Extrai Produto, Valor, Categoria e Forma de Pagamento de frases naturais.
+
+Múltiplos Itens por Áudio: Capacidade de identificar e separar diversos gastos em uma única mensagem (ex: "Comprei um almoço de 25 e um suco de 7").
+
+Lógica de Negócio em JavaScript: Tratamento de JSON e limpeza de dados via nós de código customizados.
+
+Dashboard Automático: Integração direta com Google Sheets para visualização de gastos em tempo real.
+
+🛠️ Tecnologias Utilizadas
+n8n: Orquestração de workflow e integração de APIs.
+
+Gemini AI / Groq: Inteligência artificial para extração de entidades e transcrição.
+
+Google Sheets API: Banco de dados e interface de usuário para controle financeiro.
+
+JavaScript: Manipulação de objetos JSON e lógica de Arrays.
+
+Telegram/WhatsApp API: Interface de entrada para o usuário.
+
+📉 Estrutura da Planilha
+A planilha é organizada com as seguintes colunas automatizadas:
+
+Data/Hora: Registro do momento do gasto.
+
+Produto/Serviço: Descrição do item.
+
+Valor Total: Preço convertido em número.
+
+Categoria: Classificação automática (Alimentação, Transporte, etc.).
+
+Mês/Ano: Calculado via ARRAYFORMULA para relatórios mensais.
+
+🧠 Desafios Técnicos Superados
+Tratamento de JSON: Implementação de Regex e métodos de Array em JavaScript para corrigir saídas de IA que retornavam múltiplos objetos sem formatação de lista.
+
+MIME Types: Resolução de problemas de compatibilidade de áudio (.oga para .mp3) para transcrição via APIs externas.
+
+Formatação Dinâmica: Uso de formatação condicional no Sheets para manter o padrão visual da tabela conforme novos dados são inseridos pelo n8n.
+
+Paulo Gabriel Morais Santana da Silva
+Estudante de Sistemas de Informação - 5º Período
