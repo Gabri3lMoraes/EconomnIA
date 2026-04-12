@@ -24,33 +24,29 @@ const InsightsScreen = () => {
         <View style={styles.sectionCard}>
           <Text style={styles.sectionTitle}>GASTOS POR CATEGORIA</Text>
           
-          <CategoryBar label="Alimentação" value="R$ 420" progress={0.8} />
-          <CategoryBar label="Transporte" value="R$ 245" progress={0.5} />
-          <CategoryBar label="Lazer" value="R$ 155" progress={0.3} />
-          <CategoryBar label="Moradia" value="R$ 1200" progress={0.7} />
-          <CategoryBar label="Saúde" value="R$ 89" progress={0.2} />
+          <CategoryBar label="Alimentação" value="R$ 0" progress={0} />
+  <CategoryBar label="Transporte" value="R$ 0" progress={0} />
+  <CategoryBar label="Lazer" value="R$ 0" progress={0} />
+  <CategoryBar label="Moradia" value="R$ 0" progress={0} />
+  <CategoryBar label="Saúde" value="R$ 0" progress={0} />
         </View>
 
         {/* 2. Comparação Mensal */}
         <View style={styles.sectionCard}>
           <Text style={styles.sectionTitle}>COMPARAÇÃO MENSAL</Text>
-          <View style={styles.comparisonRow}>
-            
-            <View style={styles.comparisonCol}>
-              <Text style={styles.monthLabel}>Março</Text>
-              <Text style={styles.monthValue}>R$ 3.850</Text>
-              <Text style={[styles.stat, { color: '#FB7185' }]}>+8% vs Fev</Text>
-            </View>
+          <View style={styles.comparisonCol}>
+    <Text style={styles.monthLabel}>Março</Text>
+    <Text style={styles.monthValue}>R$ 0</Text>
+    <Text style={[styles.stat, { color: '#9CA3AF' }]}>0% vs Fev</Text>
+  </View>
 
-            <View style={styles.dividerVertical} />
+  <View style={styles.dividerVertical} />
 
-            <View style={styles.comparisonCol}>
-              <Text style={styles.monthLabel}>Abril (parcial)</Text>
-              <Text style={[styles.monthValue, { color: '#34D399' }]}>R$ 3.480</Text>
-              <Text style={[styles.stat, { color: '#34D399' }]}>-9.6% vs Mar</Text>
-            </View>
-
-          </View>
+  <View style={styles.comparisonCol}>
+    <Text style={styles.monthLabel}>Abril (parcial)</Text>
+    <Text style={[styles.monthValue, { color: '#34D399' }]}>R$ 0</Text>
+    <Text style={[styles.stat, { color: '#9CA3AF' }]}>0% vs Mar</Text>
+  </View>
         </View>
 
         {/* 3. Dicas da IA */}

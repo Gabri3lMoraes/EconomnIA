@@ -12,7 +12,7 @@ services:
       - N8N_PORT=5678
       - N8N_PROTOCOL=http
       # Aqui está o link gerado pelo Cloudflare (com a barra / no final)
-      - WEBHOOK_URL=https://possible-klein-sys-diego.trycloudflare.com/
+      - WEBHOOK_URL=https://encouraging-weblog-introduces-advisory.trycloudflare.com/
       - GENERIC_TIMEZONE=America/Sao_Paulo
     volumes:
       - n8n_data:/home/node/.n8n
